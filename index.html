@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>STF Portal · Ski Town Fabricators</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Layout: steel band header, sign-in card first, then one tile per portal section, help footer. Hub landing draft v0.1, Root - Portal Admin. */
+:root{--bg:#eef1f5;--panel:#fff;--ink:#1b1f24;--muted:#5d6670;--steel:#2c4a63;--yellow:#ffc20e;--line:#cfd6de;--accent:#2348c4;--soft:#e3e9fb;
+--display:"Barlow Condensed","Arial Narrow",sans-serif;--body:"Source Sans 3","Segoe UI",system-ui,sans-serif;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15181c;--panel:#1f242b;--ink:#eef1f5;--muted:#a9b2bc;--line:#3a414b;--accent:#86a2ff;--soft:#1f2a4a;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 var(--body)}
+.band{background:var(--steel);color:#fff;border-bottom:4px solid var(--yellow)}
+.wrap{max-width:960px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.band .wrap{padding-block:18px 16px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.band b{font:700 26px/1 var(--display);letter-spacing:.02em}
+.band span{opacity:.85;font-size:15px}
+main.wrap{padding-block:26px 48px;display:grid;gap:22px}
+h1{font:700 clamp(30px,6vw,44px)/1.05 var(--display);margin:0;text-wrap:balance}
+.lede{margin:6px 0 0;color:var(--muted);max-width:60ch}
+.signin{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:12px;max-width:520px}
+.signin h2{font:700 24px/1.1 var(--display);margin:0}
+.signin form{display:flex;gap:10px;flex-wrap:wrap}
+.signin input{flex:1 1 220px;min-width:0;font:16px var(--body);color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:8px;padding:11px 12px}
+.btn{font:700 17px/1 var(--body);padding:13px 18px;border-radius:8px;border:0;background:var(--steel);color:#fff;cursor:pointer;text-decoration:none;display:inline-block}
+.hint{font-size:14px;color:var(--muted);margin:0}
+.msg{font-size:15px;font-weight:600;margin:0;color:var(--accent)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.tile{background:var(--panel);border:1.5px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:8px;align-content:start;min-width:0}
+.tile.open{border-color:var(--steel)}
+.tile h3{font:700 24px/1.05 var(--display);margin:0}
+.tile p{margin:0;color:var(--muted);font-size:15.5px}
+.tag{justify-self:start;font:700 13px/1 var(--body);padding:5px 8px;border-radius:5px;background:var(--soft);color:var(--accent)}
+.tag.soon{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.start{background:var(--panel);border:1px dashed var(--line);border-radius:12px;padding:18px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.start p{margin:0}
+footer{color:var(--muted);font-size:14px;text-align:center}
+footer a{color:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="band"><div class="wrap"><b>STF Portal</b><span>Ski Town Fabricators</span></div></div>
+<main class="wrap">
+  <div>
+    <h1>Your projects, in one place</h1>
+    <p class="lede">Review designs, approve them, and message the team. Shop managers, crew and clients each see only their own jobs.</p>
+  </div>
+
+  <section class="signin" aria-labelledby="si">
+    <h2 id="si">Sign in</h2>
+    <form id="signin">
+      <label for="email" class="hint" style="flex-basis:100%">Your email</label>
+      <input id="email" type="email" autocomplete="email" placeholder="you@example.com">
+      <button class="btn" type="submit">Email me a code</button>
+    </form>
+    <p class="msg" id="msg" hidden></p>
+    <p class="hint">We email a 6-digit code. After that, this device stays signed in for a year. Have a link from an invite? It works too.</p>
+  </section>
+
+  <div class="tiles">
+    <article class="tile open">
+      <span class="tag">Open</span>
+      <h3>Fabrication</h3>
+      <p>Signs and railings: designs, options, approvals and messages with your shop.</p>
+      <a class="btn" href="/fab/" id="fab-link" style="justify-self:start">Open Fabrication</a>
+    </article>
+    <article class="tile">
+      <span class="tag soon">Coming soon</span>
+      <h3>3D scanning and CAD</h3>
+      <p>Scan jobs and design work, with the same review and approval pages.</p>
+    </article>
+    <article class="tile">
+      <span class="tag soon">Coming soon</span>
+      <h3>3D printing</h3>
+      <p>Printed parts and small production runs.</p>
+    </article>
+  </div>
+
+  <section class="start">
+    <p><b>New project?</b> Tell us what you need and we'll reply within 2 business days.</p>
+    <a class="btn" href="https://start.skitownfab.com/">Start a project</a>
+  </section>
+
+  <footer>© 2026 Ski Town Fabricators · <a href="https://skitownfab.com">skitownfab.com</a> · <a href="https://skitownfab.com/privacy">Privacy</a> · <a href="https://skitownfab.com/terms">Terms</a> · Call or text 970-291-6209</footer>
+</main>
+<script>
+/* SIGNIN_URL: FAB - Portal Builder's email sign-in endpoint (sends the 6-digit code). FAB_URL: the Fabrication section.
+   Both are filled in when FAB - Portal Builder gives the addresses; until then the form explains that sign-in opens soon. */
+const SIGNIN_URL = "https://skitownfabricators.github.io/stf-portal/", FAB_URL = "https://skitownfabricators.github.io/stf-portal/"; /* switch both to https://fab.skitownfab.com/ after the move */
+if (FAB_URL) document.getElementById("fab-link").href = FAB_URL;
+document.getElementById("signin").addEventListener("submit", e => {
+  e.preventDefault();
+  const m = document.getElementById("msg"), v = document.getElementById("email").value.trim();
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) { m.textContent = "Enter the email your invite came to."; m.hidden = false; return; }
+  if (!SIGNIN_URL) { m.textContent = "Sign-in by email opens soon. For now, use the link in your invite email."; m.hidden = false; return; }
+  location.href = SIGNIN_URL + (SIGNIN_URL.includes("?") ? "&" : "?") + "email=" + encodeURIComponent(v);
+});
+</script>
+</body>
+</html>
