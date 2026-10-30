@@ -89,7 +89,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 <script>
 /* SIGNIN_URL: FAB - Portal Builder's email sign-in endpoint (sends the 6-digit code). FAB_URL: the Fabrication section.
    Both are filled in when FAB - Portal Builder gives the addresses; until then the form explains that sign-in opens soon. */
-const SIGNIN_URL = "https://skitownfabricators.github.io/stf-portal/", FAB_URL = "https://skitownfabricators.github.io/stf-portal/"; /* switch both to https://fab.skitownfab.com/ after the move */
+const SIGNIN_URL = "https://fab.skitownfab.com/", FAB_URL = "https://fab.skitownfab.com/";
 if (FAB_URL) document.getElementById("fab-link").href = FAB_URL;
 document.getElementById("signin").addEventListener("submit", e => {
   e.preventDefault();
